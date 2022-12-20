@@ -20,7 +20,6 @@ def download_addon(driver, addon):
     url = driver.find_element(By.CSS_SELECTOR, "a.alink.underline").get_attribute('href')
     driver.get(url)
 
-
     print(f"<{addon}> Downloading...")
     return True
 
@@ -62,11 +61,10 @@ for addon in addons.split(" "):
     if download_addon(driver, addon):
         succeeded_addons.append(addon)
 
-driver.quit()
-
 if len(succeeded_addons) == 0:
     sys.exit(1)
 while len(list(ddir.glob("*.zip"))) != len(succeeded_addons):
     time.sleep(0.1)
 
+driver.quit()
 sys.exit(0)
